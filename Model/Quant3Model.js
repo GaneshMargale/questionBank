@@ -13,6 +13,10 @@ const Quant3Schema = new mongoose.Schema({
         C: { type: String, required: [true, 'Provide option C'] },
         D: { type: String, required: [true, 'Provide option D'] },
       },
+      answer: {
+        type: String,
+        required: [true, 'Provide answer to this question'],
+      },
       contributor: {
         type: String,
         required: [true, 'Provide the name of the contributor'],
