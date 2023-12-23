@@ -63,7 +63,7 @@ exports.login = catchAsync(async (req, res, next) => {
     status: 'success',
     message: 'Logged in successfully',
     data: {
-      username: user.username,
+      name: user.name,
       admin: user.admin,
     },
   });
