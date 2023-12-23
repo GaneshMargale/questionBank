@@ -32,6 +32,20 @@ const updateQuery = (req) => {
 exports.updateAptitude = catchAsync(async (req, res, next) => {
   const id = req.params.id;
   if (id === '65806a9acf226c50947b05f3') {
+    const Q1 = await Quant1.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of Q1.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const quantOne = await Quant1.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -48,6 +62,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806aa1426dda2c9c969c3b') {
+    const Q2 = await Quant2.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of Q2.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const quantTwo = await Quant2.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -64,6 +92,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806aa8289c666188f5512f') {
+    const Q3 = await Quant3.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of Q3.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const quantThree = await Quant3.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -80,6 +122,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806aae47154e5f6c175a69') {
+    const Q4 = await Quant4.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of Q4.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const quantFour = await Quant4.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -96,6 +152,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a8a6cab405088369313') {
+    const L1 = await Logical1.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of L1.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const LogicalOne = await Logical1.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -112,6 +182,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a7f348c1821e41a40e4') {
+    const L2 = await Logical2.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of L2.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const LogicalTwo = await Logical2.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -128,6 +212,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a762e48bf6234202e3f') {
+    const L3 = await Logical3.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of L3.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const LogicalThree = await Logical3.findByIdAndUpdate(
       id,
       updateQuery(req),
@@ -148,6 +246,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a2e927e31153868ddab') {
+    const V1 = await Verbal1.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of V1.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const VerbalOne = await Verbal1.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -164,6 +276,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a5c9f1c8121100de4a6') {
+    const V2 = await Verbal2.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of V2.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const VerbalTwo = await Verbal2.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,
@@ -180,6 +306,20 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
       },
     });
   } else if (id === '65806a650ff25c63506ae016') {
+    const V3 = await Verbal3.findById(id);
+
+    let duplicateFound = false;
+
+    for (const question of V3.Questions) {
+      if (question.questionDescription === req.body.questionDescription) {
+        duplicateFound = true;
+        break;
+      }
+    }
+
+    if (duplicateFound) {
+      return next(new AppError('A question already exists', 201));
+    }
     const VerbalThree = await Verbal3.findByIdAndUpdate(id, updateQuery(req), {
       new: true,
       runValidators: true,

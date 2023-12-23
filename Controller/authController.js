@@ -3,6 +3,20 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.signup = catchAsync(async (req, res, next) => {
+  const users = await User.find();
+
+  let duplicateFound = false;
+
+  for (const user of users) {
+    if (user.name === req.body.name) {
+      duplicateFound = true;
+      break;
+    }
+  }
+
+  if (duplicateFound) {
+    return next(new AppError('A user already exists', 201));
+  }
   const username = req.body.currentUser;
   const password = req.body.currentPassword;
 
@@ -48,6 +62,10 @@ exports.login = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     message: 'Logged in successfully',
+    data: {
+      username: user.username,
+      admin: user.admin,
+    },
   });
 });
 
