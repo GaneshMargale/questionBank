@@ -29,6 +29,7 @@ const updateQuery = (req) => {
   };
 };
 
+//Add a new Question
 exports.updateAptitude = catchAsync(async (req, res, next) => {
   const id = req.params.id;
   if (id === '65806a9acf226c50947b05f3') {
@@ -338,6 +339,7 @@ exports.updateAptitude = catchAsync(async (req, res, next) => {
   }
 });
 
+//Delete a Question
 exports.deleteQuestion = catchAsync(async (req, res, next) => {
   const questionId = req.params.questionId;
 
@@ -474,6 +476,7 @@ exports.deleteQuestion = catchAsync(async (req, res, next) => {
   }
 });
 
+//Create a Module
 exports.createQuant1 = catchAsync(async (req, res, next) => {
   const newQuant1 = await Quant4.create(req.body);
 
@@ -483,6 +486,7 @@ exports.createQuant1 = catchAsync(async (req, res, next) => {
   });
 });
 
+//Get module name and id
 exports.getModules = catchAsync(async (req, res, next) => {
   const modules = [
     {
@@ -532,3 +536,72 @@ exports.getModules = catchAsync(async (req, res, next) => {
     data: modules,
   });
 });
+
+//Get all questions Module wise
+exports.getQuestions = catchAsync(async (req, res, next) => {
+  const modules = [
+    Quant1,
+    Quant2,
+    Quant3,
+    Quant4,
+    Logical1,
+    Logical2,
+    Logical3,
+    Verbal1,
+    Verbal2,
+    Verbal3,
+  ];
+
+  const result = {};
+
+  for (let i = 0; i < modules.length; i++) {
+    const moduleData = await modules[i].find();
+
+    if (!moduleData || moduleData.length === 0) {
+      return next(new AppError(`No data found for Module${i + 1}`, 404));
+    }
+
+    result[`Module${i + 1}`] = moduleData[0].Questions;
+  }
+
+  return res.status(200).json({
+    status: 'success',
+    data: result,
+  });
+});
+
+// function getRandomQuestions(array, numQuestions) {
+//   const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+//   return shuffledArray.slice(0, numQuestions);
+// }
+// exports.createContest = catchAsync(async (req, res, next) => {
+//   const modules = [
+//     Quant1,
+//     Quant2,
+//     Quant3,
+//     Quant4,
+//     Logical1,
+//     Logical2,
+//     Logical3,
+//     Verbal1,
+//     Verbal2,
+//     Verbal3,
+//   ];
+
+//   const result = [];
+
+//   for (let i = 0; i < modules.length; i++) {
+//     const moduleData = await modules[i].find();
+
+//     if (!moduleData || moduleData.length === 0) {
+//       return next(new AppError(`No data found for Module${i + 1}`, 404));
+//     }
+
+//     result.push(getRandomQuestions(questions, req.body.Module[i]));
+//   }
+
+//   return res.status(200).json({
+//     status: 'success',
+//     data: result,
+//   });
+// });
