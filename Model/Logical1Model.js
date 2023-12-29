@@ -6,6 +6,7 @@ const Logical1Schema = new mongoose.Schema({
       questionDescription: {
         type: String,
         required: [true, 'Provide the question description'],
+        unique: true,
       },
       options: {
         A: { type: String, required: [true, 'Provide option A'] },
