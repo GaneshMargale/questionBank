@@ -16,4 +16,10 @@ router
   //Route to get the modules with ids
   .get(aptitudeController.getModules);
 
+//Route to get all the questions module specific
+router.route('/getQuestions').get(aptitudeController.getQuestions);
+
+//Create a contest
+// router.route('/createContest').post(aptitudeController.createContest);
+
 module.exports = router;
