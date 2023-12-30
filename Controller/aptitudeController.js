@@ -11,6 +11,8 @@ const Quant1 = require('../Model/Quant1Model');
 const Quant2 = require('../Model/Quant2Model');
 const Quant3 = require('../Model/Quant3Model');
 const Quant4 = require('../Model/Quant4Model');
+const Contest = require('../Model/contestModel');
+const Result = require('../Model/resultModel');
 
 const updateQuery = (req) => {
   if (!req.body) {
@@ -538,42 +540,188 @@ exports.getModules = catchAsync(async (req, res, next) => {
 });
 
 //Get all questions Module wise
+// exports.getQuestions = catchAsync(async (req, res, next) => {
+//   const modules = [
+//     Quant1,
+//     Quant2,
+//     Quant3,
+//     Quant4,
+//     Logical1,
+//     Logical2,
+//     Logical3,
+//     Verbal1,
+//     Verbal2,
+//     Verbal3,
+//   ];
+
+//   const result = {};
+
+//   for (let i = 0; i < modules.length; i++) {
+//     const moduleData = await modules[i].find();
+
+//     if (!moduleData || moduleData.length === 0) {
+//       return next(new AppError(`No data found for Module${i + 1}`, 404));
+//     }
+
+//     result[`Module${i + 1}`] = moduleData[0].Questions;
+//   }
+
+//   return res.status(200).json({
+//     status: 'success',
+//     data: result,
+//   });
+// });
+
+//Refactoring needed Get Questions
 exports.getQuestions = catchAsync(async (req, res, next) => {
-  const modules = [
-    Quant1,
-    Quant2,
-    Quant3,
-    Quant4,
-    Logical1,
-    Logical2,
-    Logical3,
-    Verbal1,
-    Verbal2,
-    Verbal3,
-  ];
+  const id = req.params.id;
+  if (id === '65806a9acf226c50947b05f3') {
+    const Q1 = await Quant1.find();
 
-  const result = {};
-
-  for (let i = 0; i < modules.length; i++) {
-    const moduleData = await modules[i].find();
-
-    if (!moduleData || moduleData.length === 0) {
-      return next(new AppError(`No data found for Module${i + 1}`, 404));
+    if (!Q1) {
+      return next(new AppError('Module does not exit', 201));
     }
 
-    result[`Module${i + 1}`] = moduleData[0].Questions;
-  }
+    res.status(200).json({
+      status: 'success',
+      results: Q1.length,
+      data: {
+        Question: Q1[0].Questions,
+      },
+    });
+  } else if (id === '65806aa1426dda2c9c969c3b') {
+    const Q2 = await Quant2.find();
 
-  return res.status(200).json({
-    status: 'success',
-    data: result,
-  });
+    if (!Q2) {
+      return next(new AppError('Module does not exit', 201));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: Q2.length,
+      data: {
+        Question: Q2[0].Questions,
+      },
+    });
+  } else if (id === '65806aa8289c666188f5512f') {
+    const Q3 = await Quant3.find();
+
+    if (!Q3) {
+      return next(new AppError('Module does not exit', 201));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: Q3.length,
+      data: {
+        Question: Q3[0].Questions,
+      },
+    });
+  } else if (id === '65806aae47154e5f6c175a69') {
+    const Q4 = await Quant4.find();
+
+    if (!Q4) {
+      return next(new AppError('Module does not exit', 201));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: Q4.length,
+      data: {
+        Question: Q4[0].Questions,
+      },
+    });
+  } else if (id === '65806a8a6cab405088369313') {
+    const L1 = await Logical1.find();
+
+    if (!L1) {
+      return next(new AppError('Module does not exit', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: L1.length,
+      data: {
+        Question: L1[0].Questions,
+      },
+    });
+  } else if (id === '65806a7f348c1821e41a40e4') {
+    const L2 = await Logical2.find();
+
+    if (!L2) {
+      return next(new AppError('Module does not exit', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: L2.length,
+      data: {
+        Question: L2[0].Questions,
+      },
+    });
+  } else if (id === '65806a762e48bf6234202e3f') {
+    const L3 = await Logical3.find();
+
+    if (!L3) {
+      return next(new AppError('Module does not exit', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: L3.length,
+      data: {
+        Question: L3[0].Questions,
+      },
+    });
+  } else if (id === '65806a2e927e31153868ddab') {
+    const V1 = await Verbal1.find();
+    if (!V1) {
+      return next(new AppError('Cannot found', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: V1.length,
+      data: {
+        Question: V1[0].Questions,
+      },
+    });
+  } else if (id === '65806a5c9f1c8121100de4a6') {
+    const V2 = await Verbal2.find();
+
+    if (!V2) {
+      return next(new AppError('Module does not exit', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: V2.length,
+      data: {
+        Question: V2[0].Questions,
+      },
+    });
+  } else if (id === '65806a650ff25c63506ae016') {
+    const V3 = await Verbal3.find();
+
+    if (!V3) {
+      return next(new AppError('Module does not exit', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: V3.length,
+      data: {
+        Question: V3[0].Questions,
+      },
+    });
+  }
 });
 
 // function getRandomQuestions(array, numQuestions) {
 //   const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
 //   return shuffledArray.slice(0, numQuestions);
 // }
+
 // exports.createContest = catchAsync(async (req, res, next) => {
 //   const modules = [
 //     Quant1,
@@ -596,12 +744,104 @@ exports.getQuestions = catchAsync(async (req, res, next) => {
 //     if (!moduleData || moduleData.length === 0) {
 //       return next(new AppError(`No data found for Module${i + 1}`, 404));
 //     }
+//     const question = getRandomQuestions(
+//       moduleData[0].Questions,
+//       req.body.Module[i]
+//     );
 
-//     result.push(getRandomQuestions(questions, req.body.Module[i]));
+//     // for (let j = 0; j < question.length; j++) {
+//     //   result.push(question[j]);
+//     // }
+//     result = result.concat(question);
 //   }
 
 //   return res.status(200).json({
 //     status: 'success',
+//     length: result.length,
 //     data: result,
 //   });
 // });
+
+function getRandomQuestions(array, numQuestions) {
+  const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+  return shuffledArray.slice(0, numQuestions);
+}
+
+exports.createContest = catchAsync(async (req, res, next) => {
+  const modules = [
+    Quant1,
+    Quant2,
+    Quant3,
+    Quant4,
+    Logical1,
+    Logical2,
+    Logical3,
+    Verbal1,
+    Verbal2,
+    Verbal3,
+  ];
+
+  let result = [];
+
+  for (let i = 0; i < modules.length; i++) {
+    const moduleData = await modules[i].find();
+
+    if (!moduleData || moduleData.length === 0) {
+      return next(new AppError(`No data found for Module${i + 1}`, 404));
+    }
+
+    const questions = getRandomQuestions(
+      moduleData[0].Questions,
+      req.body.Module[i]
+    );
+
+    result = result.concat(questions);
+  }
+
+  const contestData = await Contest.find();
+
+  contestData.sort((a, b) => b.contestNumber - a.contestNumber);
+  const contestNumber = contestData[0].contestNumber;
+  const formattedContestNumber =
+    contestNumber + 1 < 10 ? `0${contestNumber + 1}` : contestNumber + 1;
+
+  const contest = {
+    contestNumber: contestNumber + 1,
+    contestName: `Aptitude - ${formattedContestNumber}`,
+    questions: result,
+    time: req.body.time,
+    visibility: false,
+  };
+
+  const newContest = await Contest.create(contest);
+
+  const newResult = {
+    contestNumber: contestNumber + 1,
+    contestName: `Aptitude - ${formattedContestNumber}`,
+    Results: [],
+  };
+
+  await Result.create(newResult);
+
+  return res.status(200).json({
+    status: 'success',
+    data: newContest,
+  });
+});
+
+exports.deleteContest = catchAsync(async (req, res, next) => {
+  const contest = await Contest.findOneAndDelete({
+    contestNumber: req.params.contestNumber,
+    contestName: req.params.contestName,
+  });
+
+  const result = await Result.findOneAndDelete({
+    contestNumber: req.params.contestNumber,
+    contestName: req.params.contestName,
+  });
+
+  return res.status(200).json({
+    status: 'success',
+    data: null,
+  });
+});
