@@ -17,9 +17,13 @@ router
   .get(aptitudeController.getModules);
 
 //Route to get all the questions module specific
-router.route('/getQuestions').get(aptitudeController.getQuestions);
+router.route('/getQuestions/:id').get(aptitudeController.getQuestions);
 
 //Create a contest
-// router.route('/createContest').post(aptitudeController.createContest);
+router.route('/Contest').post(aptitudeController.createContest);
 
+//Delete a contest
+router
+  .route('/deleteContest/:contestNumber/:contestName')
+  .delete(aptitudeController.deleteContest);
 module.exports = router;
